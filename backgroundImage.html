@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Multiple Backgrounds</title>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: 30px;
+      box-sizing: border-box;
+
+      font-family: "Times New Roman", Times, serif;
+      font-size: 2em;
+      line-height: 1.2;
+      color: #ffffff;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='70' viewBox='0 0 160 70'><ellipse cx='80' cy='48' rx='76' ry='20' fill='%23ddd' stroke='%23888' stroke-width='3'/><ellipse cx='80' cy='44' rx='30' ry='20' fill='%23111'/><circle cx='80' cy='22' r='13' fill='%23111'/><path d='M72 12 L62 0 M88 12 L98 0' stroke='%23111' stroke-width='3'/><path d='M74 24 q6 6 12 0' stroke='%23fff' stroke-width='3' fill='none'/><path d='M62 40 L42 24 M98 40 L118 24' stroke='%23111' stroke-width='6' stroke-linecap='round'/><circle cx='38' cy='20' r='8' fill='%23fff' stroke='%23888' stroke-width='2'/><circle cx='122' cy='20' r='8' fill='%23fff' stroke='%23888' stroke-width='2'/></svg>"),
+        url(https://images.pexels.com/photos/28588328/pexels-photo-28588328/free-photo-of-vast-ocean-waves-under-a-cloudy-sky.jpeg?cs=tinysrgb&dpr=1&w=500 );
+
+      background-repeat: no-repeat, repeat;
+      background-position: right bottom, center center;
+      background-size: auto, 100% 100%;
+      background-attachment: scroll, scroll;
+    }
+
+    p {
+      margin: 0;
+      padding-bottom: 80px; 
+    }
+  </style>
+</head>
+<body>
+  <p>
+    Deitel &amp; Associates, Inc., is an internationally recognized authoring and
+    corporate training organization. The company offers instructor-led courses
+    delivered at client sites worldwide on programming languages and other
+    software topics such as C++, Visual C++<sup>&reg;</sup>, C, Java&trade;,
+    C#<sup>&reg;</sup>, Visual Basic<sup>&reg;</sup>, Objective-C<sup>&reg;</sup>,
+    XML<sup>&reg;</sup>, Python<sup>&reg;</sup>, JavaScript, object technology,
+    Internet and web programming, and Android and iPhone app development.
+  </p>
+</body>
+</html>
