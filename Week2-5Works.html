@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Dev Master Study Guide (Ch 2-5)</title>
+    
+    <!-- Chapter 5.14: Downloading Web Fonts (Google Fonts) -->
+    <link href='http://fonts.googleapis.com/css?family=Calligraffiti' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rosario' rel='stylesheet' type='text/css'>
+
+    <!-- =================================================================== -->
+    <!-- CHAPTER 4.3: EMBEDDED STYLE SHEET                                   -->
+    <!-- =================================================================== -->
+    <style type="text/css">
+        /* Chapter 4.1 Basic Reset & Typography */
+        body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; padding: 20px; background-color: #f9f9f9; color: #333; }
+        h1, h2, h3 { color: darkblue; font-family: 'Rosario', sans-serif; }
+        h1 { border-bottom: 2px solid darkblue; padding-bottom: 5px; }
+
+        /* Chapter 4.10 Box Model */
+        .box-model-demo {
+            width: 50%; border: 5px dashed #ff5733; padding: 20px; margin: 30px auto;
+            background-color: #fff3e0; text-align: center;
+        }
+
+        /* Chapter 4.6 Absolute Positioning and z-index */
+        .abs-container { position: relative; height: 150px; border: 1px solid #ccc; margin-top: 10px; background-color: white; }
+        .abs-box1 { position: absolute; top: 10px; left: 10px; width: 100px; height: 100px; background-color: rgba(255, 0, 0, 0.5); z-index: 1; }
+        .abs-box2 { position: absolute; top: 40px; left: 40px; width: 100px; height: 100px; background-color: rgba(0, 0, 255, 0.5); z-index: 2; }
+
+        /* Chapter 4.12 Drop-Down Menu */
+        nav.study-menu { font-weight: bold; color: white; background-color: royalblue; width: 10em; text-align: center; border: 2px solid royalblue; }
+        nav.study-menu ul { display: none; list-style: none; margin: 0; padding: 0; }
+        nav.study-menu:hover ul { display: block; }
+        nav.study-menu ul li { border-top: 2px solid royalblue; background-color: white; width: 10em; color: black; }
+        nav.study-menu ul li:hover { background-color: powderblue; }
+        nav.study-menu ul li a { text-decoration: none; color: black; }
+
+        /* Chapter 5.1 Text Shadows */
+        .text-shadow-demo { text-shadow: -4px 4px 6px dimgrey; font-size: 250%; }
+
+        /* Chapter 5.2 Rounded Corners */
+        .rounded-demo { border: 3px solid navy; padding: 20px; background: lightcyan; width: 200px; text-align: center; border-radius: 15px; margin-bottom: 20px; }
+        .rounded-demo-circle { border-radius: 50px; }
+
+        /* Chapter 5.3 Color (RGBA & HSLA) */
+        .color-demo { padding: 15px; margin: 10px 0; color: white; font-weight: bold; }
+        .rgba-demo { background: rgba(255, 0, 0, 0.5); } /* Half-opaque red */
+        .hsla-demo { background: hsla(240, 100%, 50%, 0.7); } /* Opaque blue */
+
+        /* Chapter 5.4 Box Shadows */
+        .box-shadow-demo { width: 200px; height: 100px; background-color: plum; box-shadow: 25px 25px 50px dimgrey; float: left; margin-right: 50px; margin-top: 20px; }
+
+        /* Chapter 5.5 Linear Gradients */
+        .gradient-vertical { width: 200px; height: 150px; border: 3px solid navy; float: left; margin-right: 15px;
+            background: -webkit-linear-gradient(top, white 15%, lightsteelblue 50%, navy 75%);
+            background: linear-gradient(to bottom, white 15%, lightsteelblue 50%, navy 75%); }
+        .gradient-horizontal { width: 200px; height: 150px; border: 3px solid orange; float: left; margin-right: 15px;
+            background: linear-gradient(90deg, white 15%, yellow 50%, orange 75%); }
+        .gradient-diagonal { width: 200px; height: 150px; border: 3px solid purple; float: left;
+            background: linear-gradient(45deg, white 15%, plum 50%, purple 75%); }
+
+        /* Chapter 5.6 Radial Gradients */
+        .radial-demo { width: 200px; height: 150px; padding: 5px; text-align: center; clear: both; margin-top: 20px;
+            background: -webkit-radial-gradient(center, yellow, red);
+            background: radial-gradient(center, yellow, red); }
+
+        /* Chapter 5.7 Text Stroke */
+        .text-stroke-demo { color: lightcyan; -webkit-text-stroke: 2px black; font-size: 300%; }
+
+        /* Chapter 5.8 Multiple Background Images */
+        .multi-bg-demo { padding: 20px; color: white; background-image: url('https://placehold.co/50x50/red/white?text=Logo'), url('https://placehold.co/600x200/blue/white?text=Ocean');
+            background-position: bottom right, 100% center; background-origin: border-box, content-box; background-repeat: no-repeat, repeat; border: 2px solid black; }
+
+        /* Chapter 5.9 Reflections */
+        .reflection-demo { -webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), to(white)); }
+
+        /* Chapter 5.10 Image Borders */
+        .image-border-demo { border-width: 30px; width: 234px; padding: 20px; border-image: url('https://placehold.co/200x200/red/white?text=Border') 30 30 30 30 stretch; }
+
+        /* Chapter 5.11 Animation */
+        .animated-box { width: 100px; height: 100px; background-color: coral; position: relative;
+            animation: movingImage linear 4s 1s 2 alternate; }
+        @keyframes movingImage {
+            0% { opacity: 0; left: 50px; top: 0px; }
+            25% { opacity: 1; left: 0px; top: 50px; }
+            50% { opacity: 0; left: 50px; top: 100px; }
+            75% { opacity: 1; left: 100px; top: 50px; }
+            100% { opacity: 0; left: 50px; top: 0px; }
+        }
+
+        /* Chapter 5.12 Transitions and Transformations */
+        .transition-demo { width: 100px; height: 100px; background-color: lightgreen; transition: transform 4s, opacity 2s; margin: 20px; }
+        .transition-demo:hover { transform: rotate(360deg) scale(1.5); opacity: 0.5; }
+        .skew-demo { width: 150px; height: 80px; background: lightgreen; border: 3px solid DarkGreen; border-radius: 15px; text-align: center; padding-top: 40px; font-size: 150%; transition: transform 1s; }
+        .skew-demo:hover { transform: skewX(45deg); }
+
+        /* Chapter 5.15 Flexible Box Layout & :nth-child Selectors */
+        .flexbox { width: 100%; display: -webkit-box; display: box; box-orient: horizontal; margin-top: 20px; }
+        .flexbox > div { transition: 1s ease-out; border-radius: 10px; border: 2px solid black; width: 20%; margin: 10px; padding: 20px; box-shadow: 10px 10px 10px dimgrey; }
+        .flexbox > div:nth-child(1) { background-color: lightgrey; }
+        .flexbox > div:nth-child(2) { background-color: lightgrey; }
+        .flexbox > div:hover { width: 40%; color: white; font-weight: bold; }
+        .flexbox > div:nth-child(1):hover { background-color: royalblue; }
+        .flexbox > div:nth-child(2):hover { background-color: crimson; }
+
+        /* Chapter 5.16 Multicolumn Layout */
+        .multicolumns { column-count: 3; column-gap: 30px; column-rule: 1px outset black; margin-top: 20px; }
+
+        /* Chapter 5.17 Media Queries */
+        @media handheld and (max-width: 480px), screen and (max-width: 480px) {
+            .multicolumns { column-count: 1; }
+        }
+        @media only screen and (min-width: 481px) and (max-width: 1024px) {
+            .multicolumns { column-count: 2; column-gap: 30px; column-rule: 1px outset black; }
+        }
+        @media only screen and (min-width: 1025px) {
+            .multicolumns { column-count: 3; column-gap: 30px; column-rule: 1px outset black; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Web Development Master Study Guide (Chapters 2 - 5)</h1>
+        <p>This single file visually demonstrates every topic from your notes. Resize the window and hover over elements to see them in action!</p>
+    </header>
+
+    <hr>
+
+    <!-- =================================================================== -->
+    <!-- CHAPTER 2 & 3: HTML STRUCTURE, FORMS & SEMANTICS                    -->
+    <!-- =================================================================== -->
+    <section id="html-basics">
+        <h2>Chapters 2 & 3: HTML Basics & HTML5 Forms</h2>
+
+        <h3>2.5 Headings</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+
+        <h3>2.6 Linking & 2.12 Internal Linking</h3>
+        <p><a href="#html-basics">Internal link to this section</a> | <a href="mailto:test@test.com">Email Link</a></p>
+
+        <h3>2.7 Images & 2.8 Special Characters</h3>
+        <p>Copyright &copy; 2024. Image with Alt Text:</p>
+        <img src="https://placehold.co/100x50/333/FFF?text=Image" alt="Placeholder Image">
+        <hr>
+
+        <h3>2.9 Lists</h3>
+        <ul>
+            <li>Unordered Item 1</li>
+            <li>Unordered Item 2
+                <ol><li>Nested Ordered Item</li></ol>
+            </li>
+        </ul>
+
+        <h3>2.10 Tables</h3>
+        <table border="1">
+            <caption>Simple Table</caption>
+            <thead><tr><th>Header 1</th><th>Header 2</th></tr></thead>
+            <tbody><tr><td>Data 1</td><td>Data 2</td></tr></tbody>
+        </table>
+
+        <h3>2.11 Forms & 3.2 HTML5 Input Types</h3>
+        <form method="post" action="#">
+            <p><label>Text: <input type="text" name="name"></label></p>
+            <p><label>Email: <input type="email" placeholder="name@domain.com" required></label></p>
+            <p><label>Color: <input type="color"></label></p>
+            <p><label>Number (0-10): <input type="number" min="0" max="10" value="5"></label></p>
+            <p><label>Range: <input type="range" min="0" max="20" value="10"></label></p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+
+        <h3>3.3 Datalist</h3>
+        <input list="browsers" placeholder="Type a browser...">
+        <datalist id="browsers">
+            <option value="Chrome"></option>
+            <option value="Firefox"></option>
+        </datalist>
+
+        <h3>3.4 HTML5 Semantic Page Structure</h3>
+        <header style="background: skyblue; padding: 5px;">&lt;header&gt; - Site Header</header>
+        <nav style="background: #ddd; padding: 5px;">&lt;nav&gt; - Navigation Links</nav>
+        <section style="border: 1px solid #ccc; padding: 10px;">
+            &lt;section&gt; - Groups content
+            <figure style="border: 1px dashed gray; padding: 5px; text-align: center;">
+                <img src="https://placehold.co/80" alt="Fig">
+                <figcaption>&lt;figcaption&gt; - Caption</figcaption>
+            </figure>
+            <article style="background: #f9f9f9; padding: 10px;">&lt;article&gt; - Standalone content (e.g., blog post)</article>
+            <details><summary>&lt;summary&gt; - Click to expand &lt;details&gt;</summary><p>Hidden content revealed!</p></details>
+            <p>Text Semantics: <mark>Marked text</mark> and word break: Super<wbr>cali<wbr>fragilistic.</p>
+        </section>
+        <aside style="background: #ffe4b5; padding: 5px;">&lt;aside&gt; - Sidebar content</aside>
+        <p>Survey Meter: 0 <meter min="0" max="100" value="75"></meter> 100</p>
+        <footer style="background: #333; color: white; padding: 5px;">&lt;footer&gt; - Copyright &amp; <address>Contact: <a href="mailto:x@y.com">x@y.com</a></address></footer>
+    </section>
+
+    <hr>
+
+    <!-- =================================================================== -->
+    <!-- CHAPTER 4: CSS PART 1                                               -->
+    <!-- =================================================================== -->
+    <section id="css-part1">
+        <h2>Chapter 4: CSS Part 1</h2>
+
+        <h3>4.2 Inline Styles</h3>
+        <p style="color: red; font-size: 20pt;">This text is styled with inline CSS (red, 20pt).</p>
+
+        <h3>4.4 Conflicting Styles (Specificity) & 4.6 Absolute Positioning & z-index</h3>
+        <div class="abs-container">
+            <div class="abs-box1">Box 1 (z-index: 1)</div>
+            <div class="abs-box2">Box 2 (z-index: 2) - This is on top!</div>
+        </div>
+
+        <h3>4.7 Relative Positioning</h3>
+        <p>This is normal text with a <span style="position: relative; top: -5px; color: red;">superscripted word</span> using relative positioning.</p>
+
+        <h3>4.8 Backgrounds & 4.9 Element Dimensions</h3>
+        <div style="background-image: url('https://placehold.co/50'); background-repeat: no-repeat; background-position: right center; background-color: lightgray; padding: 20px; width: 50%; height: 100px; overflow: scroll;">
+            This box has a background image positioned right, with a gray background color. It is 50% width and 100px height. If text overflows, scrollbars appear. Lorem ipsum dolor sit amet.
+        </div>
+
+        <h3>4.10 Box Model</h3>
+        <div class="box-model-demo">
+            <strong>Box Model:</strong> Margin (outside) &rarr; Border &rarr; Padding (inside) &rarr; Content
+        </div>
+
+        <h3>4.12 Drop-Down Menus</h3>
+        <nav class="study-menu">
+            Hover over me
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <hr>
+
+    <!-- =================================================================== -->
+    <!-- CHAPTER 5: CSS PART 2                                               -->
+    <!-- =================================================================== -->
+    <section id="css-part2">
+        <h2>Chapter 5: CSS Part 2 (Advanced CSS3)</h2>
+
+        <h3>5.1 Text Shadows</h3>
+        <p class="text-shadow-demo">Text Shadow Effect</p>
+
+        <h3>5.2 Rounded Corners</h3>
+        <div class="rounded-demo">Small Rounded Corners (15px)</div>
+        <div class="rounded-demo rounded-demo-circle">Extreme Rounded Corners (50px)</div>
+
+        <h3>5.3 Color (RGBA & HSLA)</h3>
+        <div class="color-demo rgba-demo">RGBA: Half-Opaque Red</div>
+        <div class="color-demo hsla-demo">HSLA: Opaque Blue</div>
+
+        <h3>5.4 Box Shadows</h3>
+        <div class="box-shadow-demo">Box Shadow Bottom and Right</div>
+        <div style="clear: both;"></div>
+
+        <h3>5.5 Linear Gradients & 5.6 Radial Gradients</h3>
+        <div class="gradient-vertical">Vertical</div>
+        <div class="gradient-horizontal">Horizontal</div>
+        <div class="gradient-diagonal">Diagonal</div>
+        <div class="radial-demo">Radial Gradient</div>
+        <div style="clear: both;"></div>
+
+        <h3>5.7 Text Stroke (WebKit)</h3>
+        <p class="text-stroke-demo">Text Stroke</p>
+
+        <h3>5.8 Multiple Background Images</h3>
+        <div class="multi-bg-demo">This div uses two background images: a logo at the bottom right and an ocean image centered behind the text.</div>
+
+        <h3>5.9 Reflections (WebKit)</h3>
+        <img src="https://placehold.co/100x100/blue/white?text=Reflect" alt="Reflect" class="reflection-demo">
+
+        <h3>5.10 Image Borders</h3>
+        <div class="image-border-demo">Stretching the image border</div>
+
+        <h3>5.11 Animation (@keyframes)</h3>
+        <p>Watch the coral box move in a diamond pattern (opacity changes):</p>
+        <div class="animated-box"></div>
+        <div style="clear: both;"></div>
+
+        <h3>5.12 Transitions and Transformations</h3>
+        <p><strong>Hover over the green boxes below:</strong></p>
+        <div class="transition-demo">Hover to Rotate & Scale</div>
+        <div class="skew-demo">Hover to Skew</div>
+
+        <h3>5.14 Web Fonts (@font-face)</h3>
+        <p style="font-family: 'Calligraffiti'; font-size: 36px; text-shadow: 3px 3px 3px DimGrey;">Embedding Google Font "Calligraffiti"</p>
+
+        <h3>5.15 Flexible Box Layout & :nth-child</h3>
+        <div class="flexbox">
+            <div><strong>Item 1</strong><p>Hover to expand. This uses :nth-child(1).</p></div>
+            <div><strong>Item 2</strong><p>Hover to expand. This uses :nth-child(2).</p></div>
+            <div><strong>Item 3</strong><p>Standard flexbox layout.</p></div>
+        </div>
+
+        <h3>5.16 Multicolumn Layout & 5.17 Media Queries</h3>
+        <p><em>Resize your browser window to see the columns change from 3 columns to 2, then to 1 column on small screens.</em></p>
+        <div class="multicolumns">
+            <p>A computer is a device that can perform computations and make logical decisions phenomenally faster than human beings can. Many of today's personal computers can perform billions of calculations in one second—more than a human can perform in a lifetime. Supercomputers are already performing thousands of trillions (quadrillions) of instructions per second! To put that in perspective, a quadrillion-instruction-per-second computer can perform in one second more than 100,000 calculations for every person on the planet! And—these "upper limits" are growing quickly!</p>
+            <p>Computers process data under the control of sets of instructions called computer programs. These programs guide the computer through orderly sets of actions specified by people called computer programmers. The programs that run on a computer are referred to as software. In this book, you'll learn today's key programming methodology that's enhancing programmer productivity, thereby reducing software-development costs—object-oriented programming.</p>
+            <p>A computer consists of various devices referred to as hardware (e.g., the keyboard, screen, mouse, hard disks, memory, DVDs and processing units). Computing costs are dropping dramatically, owing to rapid developments in hardware and software technologies.</p>
+        </div>
+    </section>
+
+</body>
+</html>
